@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ALPHA GROUP Admin</title>
+<style>
+body{font-family:system-ui,sans-serif;margin:0;background:#f5f6f8;color:#222}header{background:#c9162b;color:white;padding:18px}main{max-width:850px;margin:16px auto;padding:0 12px}.card{background:white;border:1px solid #ddd;border-radius:12px;padding:15px;margin:12px 0}h1{font-size:21px;margin:0}h2{font-size:18px}label{display:block;font-weight:600;font-size:14px;margin:10px 0 5px}input,textarea,select{width:100%;box-sizing:border-box;padding:11px;border:1px solid #ccc;border-radius:8px;font:inherit}textarea{min-height:70px}button{padding:10px 13px;border:0;border-radius:8px;background:#c9162b;color:white;font-weight:700;margin:5px 5px 5px 0}button.alt{background:#333}button.light{background:#eee;color:#222}.hidden{display:none!important}.msg{padding:10px;border-radius:8px;white-space:pre-wrap}.err{background:#fee;color:#900}.ok{background:#e7f8ed;color:#165d32}.hint{font-size:13px;color:#666;line-height:1.5}.item,.order{border:1px solid #ddd;border-radius:9px;padding:12px;margin:10px 0;overflow-wrap:anywhere}.item h3,.order h3{font-size:16px;margin:0 0 6px}.tabs{display:flex;gap:8px}.tabs button{background:#eee;color:#222}.tabs button.active{background:#c9162b;color:white}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:600px){.grid{grid-template-columns:1fr}}
+</style></head><body>
+<header><h1>ALPHA GROUP — অ্যাডমিন প্যানেল</h1><div>পণ্য ও অর্ডার পরিচালনা</div></header><main>
+<div id="msg" class="msg hidden"></div>
+<section id="login" class="card"><h2>অ্যাডমিন লগইন</h2><p class="hint">Supabase Authentication-এ তৈরি করা অ্যাডমিন ইমেইল ও পাসওয়ার্ড দিন।</p>
+<form id="loginForm"><label>ইমেইল</label><input id="email" type="email" required autocomplete="username"><label>পাসওয়ার্ড</label><input id="password" type="password" required autocomplete="current-password"><button>লগইন করুন</button></form></section>
+<section id="app" class="hidden"><div class="card"><span id="who"></span> <button id="logout" class="alt">লগআউট</button></div>
+<div class="tabs"><button class="active" data-tab="products">পণ্য</button><button data-tab="orders">অর্ডার</button></div>
+<section id="products" class="card"><h2>পণ্য যোগ / পরিবর্তন</h2><form id="productForm"><input id="pid" type="hidden">
+<div class="grid"><div><label>পণ্যের নাম *</label><input id="pname" required maxlength="150"></div><div><label>ক্যাটাগরি</label><input id="pcat"></div><div><label>দাম (৳) *</label><input id="price" type="number" min="0" step=".01" required></div><div><label>স্টক সংখ্যা</label><input id="stock" type="number" min="0" step="1" value="0" required></div></div>
+<label>ছবির URL (ঐচ্ছিক)</label><input id="image" type="url" placeholder="https://..."><label>বিবরণ</label><textarea id="desc"></textarea><label><input id="active" type="checkbox" checked style="width:auto"> ওয়েবসাইটে পণ্যটি দেখান</label>
+<button id="save">পণ্য সংরক্ষণ করুন</button><button id="cancel" type="button" class="light hidden">এডিট বাতিল</button><button id="refresh" type="button" class="light">রিফ্রেশ</button></form></section>
+<section id="orders" class="card hidden"><h2>অর্ডার তালিকা</h2><p class="hint">অর্ডার ফর্ম যুক্ত হলে এখানে অর্ডার দেখা যাবে।</p><button id="refreshOrders">অর্ডার রিফ্রেশ</button><div id="orderList"></div></section>
+<section id="productListCard" class="card"><h2>পণ্যের তালিকা</h2><div id="productList"></div></section>
+</section>
+<p class="hint">নিরাপত্তা: Publishable key ব্যবহার করুন; secret বা service_role key কখনো এখানে বসাবেন না।</p></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(()=>{
+const URL='https://fjldhxkottfezpkpagcd.supabase.co';
+const KEY='sb_publishable_VYjqlES3YhTQSIyIEFNJnA_Fr_rS6HO';
+const db=window.supabase.createClient(URL,KEY),$=id=>document.getElementById(id);
+const msg=(s,t='ok')=>{$('msg').textContent=s;$('msg').className='msg '+t;window.scrollTo(0,0)};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let products=[];
+function loggedOut(){$('login').classList.remove('hidden');$('app').classList.add('hidden')}
+function loggedIn(u){$('login').classList.add('hidden');$('app').classList.remove('hidden');$('who').textContent=u.email||'অ্যাডমিন'}
+async function verify(){
+ const {data:{user}}=await db.auth.getUser();if(!user){loggedOut();return}
+ const {data,error}=await db.rpc('is_alpha_admin');if(error||data!==true){await db.auth.signOut();loggedOut();msg('এই অ্যাকাউন্টটি অ্যাডমিন হিসেবে অনুমোদিত নয়।','err');return}
+ loggedIn(user);await loadProducts();await loadOrders()
+}
+$('loginForm').onsubmit=async e=>{e.preventDefault();const {data,error}=await db.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error){msg('লগইন হয়নি: '+error.message,'err');return}const {data:ok,error:er}=await db.rpc('is_alpha_admin');if(er||ok!==true){await db.auth.signOut();msg('এই অ্যাকাউন্টটি অ্যাডমিন অনুমোদিত নয়।','err');return}loggedIn(data.user);msg('লগইন সফল হয়েছে।');await loadProducts();await loadOrders()};
+$('logout').onclick=async()=>{await db.auth.signOut();loggedOut();msg('লগআউট হয়েছে')};
+document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('active',x===b));$('products').classList.toggle('hidden',b.dataset.tab!=='products');$('productListCard').classList.toggle('hidden',b.dataset.tab!=='products');$('orders').classList.toggle('hidden',b.dataset.tab!=='orders')});
+function reset(){ $('productForm').reset();$('pid').value='';$('stock').value='0';$('active').checked=true;$('cancel').classList.add('hidden');$('save').textContent='পণ্য সংরক্ষণ করুন'}
+$('cancel').onclick=reset;
+$('productForm').onsubmit=async e=>{e.preventDefault();let id=$('pid').value;const p={name:$('pname').value.trim(),category:$('pcat').value.trim(),price:Number($('price').value),stock:Number($('stock').value),image_url:$('image').value.trim(),description:$('desc').value.trim(),is_active:$('active').checked};if(!p.name||!Number.isFinite(p.price)||p.price<0||!Number.isInteger(p.stock)||p.stock<0){msg('নাম, দাম ও স্টক সঠিকভাবে দিন।','err');return}const r=id?await db.from('products').update(p).eq('id',Number(id)):await db.from('products').insert(p);if(r.error){msg('পণ্য সংরক্ষণ হয়নি: '+r.error.message,'err');return}msg(id?'পণ্য আপডেট হয়েছে।':'নতুন পণ্য যোগ হয়েছে।');reset();await loadProducts()};
+async function loadProducts(){const {data,error}=await db.from('products').select('*').order('created_at',{ascending:false});if(error){$('productList').textContent='পণ্য লোড হয়নি: '+error.message;return}products=data||[];if(!products.length){$('productList').innerHTML='<p class="hint">এখনো পণ্য যোগ করা হয়নি।</p>';return}
+$('productList').innerHTML=products.map(p=>`<div class="item"><h3>${esc(p.name)} ${p.is_active?'':'(লুকানো)'}</h3><p>দাম: ৳${Number(p.price).toFixed(2)} • স্টক: ${p.stock} • ${esc(p.category||'')}</p><p>${esc(p.description||'')}</p><p>${p.image_url?'<a target="_blank" rel="noopener" href="'+esc(p.image_url)+'">ছবি দেখুন</a>':''}</p><button data-edit="${p.id}">এডিট</button><button class="alt" data-toggle="${p.id}">${p.is_active?'লুকান':'দেখান'}</button></div>`).join('');
+$('productList').querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>{const p=products.find(x=>x.id===+b.dataset.edit);$('pid').value=p.id;$('pname').value=p.name||'';$('pcat').value=p.category||'';$('price').value=p.price;$('stock').value=p.stock;$('image').value=p.image_url||'';$('desc').value=p.description||'';$('active').checked=!!p.is_active;$('save').textContent='পরিবর্তন সংরক্ষণ করুন';$('cancel').classList.remove('hidden');window.scrollTo(0,0)});
+$('productList').querySelectorAll('[data-toggle]').forEach(b=>b.onclick=async()=>{const p=products.find(x=>x.id===+b.dataset.toggle);const {error}=await db.from('products').update({is_active:!p.is_active}).eq('id',p.id);if(error){msg('পরিবর্তন হয়নি: '+error.message,'err');return}await loadProducts();msg('পণ্যের অবস্থা আপডেট হয়েছে')})
+}
+async function loadOrders(){const {data,error}=await db.from('orders').select('*').order('created_at',{ascending:false}).limit(100);if(error){$('orderList').textContent='অর্ডার লোড হয়নি: '+error.message;return}if(!data?.length){$('orderList').innerHTML='<p class="hint">এখনো অর্ডার নেই। ক্রেতার অর্ডার ফর্ম যুক্ত করা পরের কাজ।</p>';return}
+$('orderList').innerHTML=data.map(o=>`<div class="order"><h3>অর্ডার #${o.id} — ৳${Number(o.total_amount).toFixed(2)}</h3><p>ক্রেতা: ${esc(o.customer_name)} • ফোন: ${esc(o.phone)}</p><p>ঠিকানা: ${esc(o.address)}</p><p>পণ্য: ${esc(JSON.stringify(o.items))}</p><label>অবস্থা</label><select data-status="${o.id}">${[['pending','নতুন'],['confirmed','নিশ্চিত'],['shipped','পাঠানো হয়েছে'],['delivered','ডেলিভারি হয়েছে'],['cancelled','বাতিল']].map(([v,l])=>`<option value="${v}" ${o.status===v?'selected':''}>${l}</option>`).join('')}</select><button data-save="${o.id}">অবস্থা সংরক্ষণ</button></div>`).join('');
+$('orderList').querySelectorAll('[data-save]').forEach(b=>b.onclick=async()=>{const id=+b.dataset.save,status=$('orderList').querySelector('[data-status="'+id+'"]').value;const {error}=await db.from('orders').update({status}).eq('id',id);if(error){msg('আপডেট হয়নি: '+error.message,'err');return}msg('অর্ডার আপডেট হয়েছে');await loadOrders()})
+}
+$('refresh').onclick=loadProducts;$('refreshOrders').onclick=loadOrders;db.auth.onAuthStateChange((event,session)=>{if(event==='SIGNED_OUT'||!session)loggedOut()});verify()
+})();
+</script></body></html>
