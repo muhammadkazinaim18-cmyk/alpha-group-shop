@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#b91c1c">
+<title>ALPHA GROUP | অনলাইন শপ</title>
+<style>
+:root{--red:#b91c1c;--dark:#171717;--muted:#666;--bg:#f7f7f8;--line:#e7e7eb}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;background:var(--bg);color:var(--dark)}
+a{color:inherit;text-decoration:none}.top{background:#18181b;color:#fff;text-align:center;padding:8px 12px;font-size:13px}
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.nav{max-width:1100px;margin:auto;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px;letter-spacing:.3px}.logo{background:var(--red);color:white;width:42px;height:42px;display:grid;place-items:center;border-radius:10px;font-weight:900;font-size:19px}
+.navlinks{display:flex;gap:18px;font-size:14px}.btn{border:0;border-radius:9px;background:var(--red);color:#fff;padding:11px 15px;font-weight:700;cursor:pointer;display:inline-block}.btn.secondary{background:#fff;color:var(--red);border:1px solid var(--red)}
+.hero{background:linear-gradient(120deg,#7f1d1d,#dc2626 60%,#f87171);color:white;padding:48px 16px}.hero-inner{max-width:1100px;margin:auto;display:grid;grid-template-columns:1.3fr .7fr;align-items:center;gap:25px}.hero h1{font-size:clamp(30px,5vw,50px);line-height:1.15;margin:0 0 14px}.hero p{font-size:17px;line-height:1.8;max-width:590px;color:#fff1f2}.hero-art{background:#ffffff20;border:1px solid #ffffff55;border-radius:24px;padding:28px;text-align:center}.hero-art .ag{font-size:76px;font-weight:1000;letter-spacing:-5px}.hero-art div:last-child{font-size:13px;letter-spacing:4px}
+main{max-width:1100px;margin:auto;padding:28px 16px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:18px}.section-head h2{margin:0;font-size:25px}.section-head p{margin:5px 0 0;color:var(--muted);font-size:14px}
+.tools{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px}.tools input,.tools select{padding:11px 12px;border:1px solid var(--line);border-radius:9px;background:#fff;font:inherit;min-width:150px}.tools input{flex:1}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.product{background:#fff;border:1px solid var(--line);border-radius:15px;overflow:hidden;display:flex;flex-direction:column}.photo{height:185px;background:linear-gradient(135deg,#fee2e2,#f3f4f6);display:grid;place-items:center;color:#991b1b;font-size:50px}.photo span{font-size:52px}.product-body{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1}.product h3{margin:0;font-size:17px}.desc{color:var(--muted);font-size:13px;line-height:1.6;min-height:38px}.price{font-weight:800;font-size:18px}.old{color:#888;text-decoration:line-through;font-size:13px;font-weight:400;margin-left:7px}.product .btn{width:100%;margin-top:auto}
+.info{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:32px 0}.info article{background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px}.info strong{display:block;margin:8px 0}.info p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
+footer{background:#18181b;color:#fff;padding:28px 16px}.foot{max-width:1100px;margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.foot p{color:#d4d4d8;font-size:14px;line-height:1.7;margin:7px 0}
+.wa-float{position:fixed;right:16px;bottom:16px;background:#15803d;color:white;padding:13px 16px;border-radius:999px;box-shadow:0 5px 18px #0003;font-weight:800;z-index:20}
+.empty{display:none;padding:24px;text-align:center;color:var(--muted);background:white;border-radius:12px}
+@media(max-width:700px){.navlinks{display:none}.hero-inner{grid-template-columns:1fr}.hero-art{display:none}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.photo{height:135px}.product-body{padding:11px}.product h3{font-size:15px}.desc{font-size:12px}.info{grid-template-columns:1fr}.section-head h2{font-size:21px}}
+@media(max-width:380px){.grid{grid-template-columns:1fr}.photo{height:180px}}
+</style>
+</head>
+<body>
+<div class="top">ALPHA GROUP — আপনার পছন্দ, আমাদের অঙ্গীকার</div>
+<header><nav class="nav">
+<a class="brand" href="#"><span class="logo">AG</span><span>ALPHA GROUP<small style="display:block;font-size:10px;color:#777;font-weight:600;letter-spacing:2px">ONLINE SHOP</small></span></a>
+<div class="navlinks"><a href="#products">পণ্যসমূহ</a><a href="#delivery">ডেলিভারি</a><a href="#contact">যোগাযোগ</a></div>
+<a class="btn" href="#products">কেনাকাটা করুন</a>
+</nav></header>
+<section class="hero"><div class="hero-inner">
+<div><h1>স্টাইল হোক আপনার নিজের</h1><p>ALPHA GROUP অনলাইন শপে স্বাগতম। আপনার পছন্দের পোশাক বেছে নিন, পণ্যের অর্ডার WhatsApp-এ পাঠান।</p><a class="btn" style="background:#fff;color:#991b1b" href="#products">পণ্য দেখুন ↓</a></div>
+<div class="hero-art"><div class="ag">AG</div><div>ALPHA GROUP</div><p>QUALITY • STYLE • TRUST</p></div>
+</div></section>
+<main>
+<section id="products">
+<div class="section-head"><div><h2>আমাদের পণ্য</h2><p>পছন্দের পণ্য বেছে নিয়ে WhatsApp-এ অর্ডার করুন</p></div></div>
+<div class="tools"><input id="search" type="search" placeholder="পণ্যের নাম লিখে খুঁজুন…" aria-label="পণ্য খুঁজুন"><select id="category" aria-label="ক্যাটাগরি"><option value="all">সব পণ্য</option><option value="men">ছেলেদের পোশাক</option><option value="women">মেয়েদের পোশাক</option><option value="other">অন্যান্য</option></select></div>
+<div class="grid" id="grid">
+<article class="product" data-category="men" data-name="ক্যাজুয়াল টি-শার্ট"><div class="photo"><span>👕</span></div><div class="product-body"><h3>ক্যাজুয়াল টি-শার্ট</h3><div class="desc">প্রতিদিনের ব্যবহারের জন্য আরামদায়ক স্টাইল।</div><div class="price">৳ ৪৫০</div><button class="btn order" data-product="ক্যাজুয়াল টি-শার্ট" data-price="450">WhatsApp-এ অর্ডার</button></div></article>
+<article class="product" data-category="men" data-name="ক্যাজুয়াল শার্ট"><div class="photo"><span>👔</span></div><div class="product-body"><h3>ক্যাজুয়াল শার্ট</h3><div class="desc">স্মার্ট লুকের জন্য সুন্দর ক্যাজুয়াল শার্ট।</div><div class="price">৳ ৭৫০</div><button class="btn order" data-product="ক্যাজুয়াল শার্ট" data-price="750">WhatsApp-এ অর্ডার</button></div></article>
+<article class="product" data-category="women" data-name="কুর্তি"><div class="photo"><span>👗</span></div><div class="product-body"><h3>কুর্তি</h3><div class="desc">দৈনন্দিন ও বাইরে যাওয়ার জন্য মানানসই।</div><div class="price">৳ ৬৫০</div><button class="btn order" data-product="কুর্তি" data-price="650">WhatsApp-এ অর্ডার</button></div></article>
+<article class="product" data-category="women" data-name="থ্রি-পিস"><div class="photo"><span>🧵</span></div><div class="product-body"><h3>থ্রি-পিস</h3><div class="desc">পছন্দমতো রং ও ডিজাইন জানতে যোগাযোগ করুন।</div><div class="price">৳ ১,২০০</div><button class="btn order" data-product="থ্রি-পিস" data-price="1200">WhatsApp-এ অর্ডার</button></div></article>
+<article class="product" data-category="other" data-name="ব্যাকপ্যাক"><div class="photo"><span>🎒</span></div><div class="product-body"><h3>ব্যাকপ্যাক</h3><div class="desc">কাজ, পড়াশোনা ও ভ্রমণের জন্য উপযোগী।</div><div class="price">৳ ৫৫০</div><button class="btn order" data-product="ব্যাকপ্যাক" data-price="550">WhatsApp-এ অর্ডার</button></div></article>
+<article class="product" data-category="other" data-name="নতুন কালেকশন"><div class="photo"><span>✨</span></div><div class="product-body"><h3>নতুন কালেকশন</h3><div class="desc">নতুন পণ্য ও বর্তমান দাম জানতে মেসেজ দিন।</div><div class="price">দাম জানতে যোগাযোগ</div><button class="btn order" data-product="নতুন কালেকশন" data-price="দাম জানতে হবে">WhatsApp-এ অর্ডার</button></div></article>
+</div><div class="empty" id="empty">কোনো পণ্য পাওয়া যায়নি। অন্য নামে খুঁজে দেখুন।</div>
+</section>
+<section class="info" id="delivery">
+<article><div style="font-size:26px">🚚</div><strong>ডেলিভারি</strong><p>ডেলিভারি চার্জ ও সময় অর্ডারের আগে WhatsApp-এ নিশ্চিত করুন।</p></article>
+<article><div style="font-size:26px">💬</div><strong>সহজ অর্ডার</strong><p>পণ্য বেছে অর্ডার বাটনে চাপুন এবং আপনার ঠিকানা পাঠান।</p></article>
+<article><div style="font-size:26px">🔒</div><strong>নিরাপদ যোগাযোগ</strong><p>পেমেন্ট করার আগে দাম, ডেলিভারি ও পেমেন্ট পদ্ধতি নিশ্চিত করুন।</p></article>
+</section>
+<section id="contact" style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:28px">
+<h2 style="margin-top:0">যোগাযোগ করুন</h2><p>পণ্যের স্টক, সাইজ, রং ও ডেলিভারি সম্পর্কে জানতে WhatsApp-এ মেসেজ দিন।</p>
+<a class="btn" href="https://wa.me/8801903491357?text=আসসালামু%20আলাইকুম%2C%20ALPHA%20GROUP%20অনলাইন%20শপ%20থেকে%20পণ্য%20সম্পর্কে%20জানতে%20চাই।" target="_blank" rel="noopener">WhatsApp-এ মেসেজ দিন</a>
+</section>
+</main>
+<footer><div class="foot"><div><strong style="font-size:20px">ALPHA GROUP</strong><p>আপনার পছন্দ, আমাদের অঙ্গীকার।</p></div><div><strong>যোগাযোগ</strong><p>WhatsApp: 01903-491357<br>© <span id="year"></span> ALPHA GROUP. সর্বস্বত্ব সংরক্ষিত।</p></div></div></footer>
+<a class="wa-float" href="https://wa.me/8801903491357?text=আসসালামু%20আলাইকুম%2C%20ALPHA%20GROUP%20থেকে%20কেনাকাটা%20করতে%20চাই।" target="_blank" rel="noopener">☏ WhatsApp</a>
+<script>
+const search=document.getElementById('search'),category=document.getElementById('category'),cards=[...document.querySelectorAll('.product')],empty=document.getElementById('empty');
+function filterProducts(){let q=search.value.trim().toLowerCase(),c=category.value,shown=0;cards.forEach(card=>{let ok=card.dataset.name.toLowerCase().includes(q)&&(c==='all'||card.dataset.category===c);card.style.display=ok?'flex':'none';if(ok)shown++});empty.style.display=shown?'none':'block'}
+search.addEventListener('input',filterProducts);category.addEventListener('change',filterProducts);
+document.querySelectorAll('.order').forEach(btn=>btn.addEventListener('click',()=>{let msg=`আসসালামু আলাইকুম, ALPHA GROUP থেকে অর্ডার করতে চাই।%0Aপণ্য: ${btn.dataset.product}%0Aদাম: ${btn.dataset.price==='দাম জানতে হবে'?'দাম জানতে চাই':'৳ '+btn.dataset.price}%0Aনাম:%0Aঠিকানা:%0Aমোবাইল:%0A`;window.open('https://wa.me/8801903491357?text='+encodeURIComponent(decodeURIComponent(msg)),'_blank','noopener')}));
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body></html>
