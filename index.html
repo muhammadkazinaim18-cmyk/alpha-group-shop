@@ -1,71 +1,488 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#b91c1c">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#c9162b">
 <title>ALPHA GROUP | অনলাইন শপ</title>
 <style>
-:root{--red:#b91c1c;--dark:#171717;--muted:#666;--bg:#f7f7f8;--line:#e7e7eb}
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;background:var(--bg);color:var(--dark)}
-a{color:inherit;text-decoration:none}.top{background:#18181b;color:#fff;text-align:center;padding:8px 12px;font-size:13px}
-header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
-.nav{max-width:1100px;margin:auto;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px;letter-spacing:.3px}.logo{background:var(--red);color:white;width:42px;height:42px;display:grid;place-items:center;border-radius:10px;font-weight:900;font-size:19px}
-.navlinks{display:flex;gap:18px;font-size:14px}.btn{border:0;border-radius:9px;background:var(--red);color:#fff;padding:11px 15px;font-weight:700;cursor:pointer;display:inline-block}.btn.secondary{background:#fff;color:var(--red);border:1px solid var(--red)}
-.hero{background:linear-gradient(120deg,#7f1d1d,#dc2626 60%,#f87171);color:white;padding:48px 16px}.hero-inner{max-width:1100px;margin:auto;display:grid;grid-template-columns:1.3fr .7fr;align-items:center;gap:25px}.hero h1{font-size:clamp(30px,5vw,50px);line-height:1.15;margin:0 0 14px}.hero p{font-size:17px;line-height:1.8;max-width:590px;color:#fff1f2}.hero-art{background:#ffffff20;border:1px solid #ffffff55;border-radius:24px;padding:28px;text-align:center}.hero-art .ag{font-size:76px;font-weight:1000;letter-spacing:-5px}.hero-art div:last-child{font-size:13px;letter-spacing:4px}
-main{max-width:1100px;margin:auto;padding:28px 16px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:18px}.section-head h2{margin:0;font-size:25px}.section-head p{margin:5px 0 0;color:var(--muted);font-size:14px}
-.tools{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px}.tools input,.tools select{padding:11px 12px;border:1px solid var(--line);border-radius:9px;background:#fff;font:inherit;min-width:150px}.tools input{flex:1}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.product{background:#fff;border:1px solid var(--line);border-radius:15px;overflow:hidden;display:flex;flex-direction:column}.photo{height:185px;background:linear-gradient(135deg,#fee2e2,#f3f4f6);display:grid;place-items:center;color:#991b1b;font-size:50px}.photo span{font-size:52px}.product-body{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1}.product h3{margin:0;font-size:17px}.desc{color:var(--muted);font-size:13px;line-height:1.6;min-height:38px}.price{font-weight:800;font-size:18px}.old{color:#888;text-decoration:line-through;font-size:13px;font-weight:400;margin-left:7px}.product .btn{width:100%;margin-top:auto}
-.info{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:32px 0}.info article{background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px}.info strong{display:block;margin:8px 0}.info p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
-footer{background:#18181b;color:#fff;padding:28px 16px}.foot{max-width:1100px;margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.foot p{color:#d4d4d8;font-size:14px;line-height:1.7;margin:7px 0}
-.wa-float{position:fixed;right:16px;bottom:16px;background:#15803d;color:white;padding:13px 16px;border-radius:999px;box-shadow:0 5px 18px #0003;font-weight:800;z-index:20}
-.empty{display:none;padding:24px;text-align:center;color:var(--muted);background:white;border-radius:12px}
-@media(max-width:700px){.navlinks{display:none}.hero-inner{grid-template-columns:1fr}.hero-art{display:none}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.photo{height:135px}.product-body{padding:11px}.product h3{font-size:15px}.desc{font-size:12px}.info{grid-template-columns:1fr}.section-head h2{font-size:21px}}
-@media(max-width:380px){.grid{grid-template-columns:1fr}.photo{height:180px}}
+*{box-sizing:border-box}
+body{margin:0;background:#f6f6f8;color:#222;font-family:Arial,sans-serif}
+button,input,textarea,select{font:inherit}
+button{border:0;border-radius:8px;padding:11px 14px;background:#c9162b;color:white;font-weight:bold;cursor:pointer}
+input,textarea,select{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin:5px 0 12px}
+.wrap{max-width:1100px;margin:auto;padding:0 14px}
+.top{background:#191919;color:white;text-align:center;padding:8px;font-size:13px}
+header{background:white;position:sticky;top:0;z-index:4;border-bottom:1px solid #ddd}
+.head{display:flex;align-items:center;gap:12px;padding:13px 0;flex-wrap:wrap}
+.brand{font-size:22px;font-weight:900;color:#c9162b}
+.search{display:flex;gap:6px;flex:1;min-width:170px}
+.search input{margin:0}
+.hero{background:linear-gradient(120deg,#211216,#c9162b);color:white;padding:28px;border-radius:14px;margin:18px 0}
+.hero h1{font-size:clamp(25px,5vw,40px);margin:0 0 10px}
+.filters{display:flex;gap:8px;overflow:auto;padding:8px 0 14px}
+.chip{background:white;color:#222;border:1px solid #ddd;white-space:nowrap}
+.chip.active{background:#c9162b;color:white}
+.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.product{background:white;border:1px solid #e4e4e4;border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.photo{height:190px;background:#eee;display:flex;align-items:center;justify-content:center}
+.photo img{width:100%;height:100%;object-fit:cover}
+.pbody{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1}
+.pname{font-weight:bold}
+.price{color:#c9162b;font-size:20px;font-weight:bold}
+.small{font-size:13px;color:#666;line-height:1.5}
+.add{width:100%;margin-top:auto}
+.empty{background:white;padding:25px;text-align:center;border-radius:10px;grid-column:1/-1}
+footer{margin-top:35px;background:#191919;color:white;padding:22px 0}
+footer button{background:#333}
+.panel{background:white;padding:15px;border-radius:12px;margin:15px 0}
+.hidden{display:none!important}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.modal{display:none;position:fixed;inset:0;background:#0008;z-index:9;align-items:flex-end;justify-content:center}
+.modal.show{display:flex}
+.drawer{background:white;width:min(100%,600px);max-height:92vh;overflow:auto;padding:18px;border-radius:16px 16px 0 0}
+.line{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid #ddd}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{padding:5px 10px}
+.msg{padding:10px;background:#fff0d5;border-radius:8px;white-space:pre-wrap}
+.item{border:1px solid #ddd;border-radius:9px;padding:12px;margin:10px 0;overflow-wrap:anywhere}
+.item img{max-width:100px;max-height:100px;object-fit:contain}
+.adminlink{background:#333}
+@media(max-width:800px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:560px){.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.photo{height:145px}.pbody{padding:9px}.pname{font-size:14px}.price{font-size:17px}.hero{padding:20px}.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="top">ALPHA GROUP — আপনার পছন্দ, আমাদের অঙ্গীকার</div>
-<header><nav class="nav">
-<a class="brand" href="#"><span class="logo">AG</span><span>ALPHA GROUP<small style="display:block;font-size:10px;color:#777;font-weight:600;letter-spacing:2px">ONLINE SHOP</small></span></a>
-<div class="navlinks"><a href="#products">পণ্যসমূহ</a><a href="#delivery">ডেলিভারি</a><a href="#contact">যোগাযোগ</a></div>
-<a class="btn" href="#products">কেনাকাটা করুন</a>
-</nav></header>
-<section class="hero"><div class="hero-inner">
-<div><h1>স্টাইল হোক আপনার নিজের</h1><p>ALPHA GROUP অনলাইন শপে স্বাগতম। আপনার পছন্দের পোশাক বেছে নিন, পণ্যের অর্ডার WhatsApp-এ পাঠান।</p><a class="btn" style="background:#fff;color:#991b1b" href="#products">পণ্য দেখুন ↓</a></div>
-<div class="hero-art"><div class="ag">AG</div><div>ALPHA GROUP</div><p>QUALITY • STYLE • TRUST</p></div>
-</div></section>
-<main>
-<section id="products">
-<div class="section-head"><div><h2>আমাদের পণ্য</h2><p>পছন্দের পণ্য বেছে নিয়ে WhatsApp-এ অর্ডার করুন</p></div></div>
-<div class="tools"><input id="search" type="search" placeholder="পণ্যের নাম লিখে খুঁজুন…" aria-label="পণ্য খুঁজুন"><select id="category" aria-label="ক্যাটাগরি"><option value="all">সব পণ্য</option><option value="men">ছেলেদের পোশাক</option><option value="women">মেয়েদের পোশাক</option><option value="other">অন্যান্য</option></select></div>
-<div class="grid" id="grid">
-<article class="product" data-category="men" data-name="ক্যাজুয়াল টি-শার্ট"><div class="photo"><span>👕</span></div><div class="product-body"><h3>ক্যাজুয়াল টি-শার্ট</h3><div class="desc">প্রতিদিনের ব্যবহারের জন্য আরামদায়ক স্টাইল।</div><div class="price">৳ ৪৫০</div><button class="btn order" data-product="ক্যাজুয়াল টি-শার্ট" data-price="450">WhatsApp-এ অর্ডার</button></div></article>
-<article class="product" data-category="men" data-name="ক্যাজুয়াল শার্ট"><div class="photo"><span>👔</span></div><div class="product-body"><h3>ক্যাজুয়াল শার্ট</h3><div class="desc">স্মার্ট লুকের জন্য সুন্দর ক্যাজুয়াল শার্ট।</div><div class="price">৳ ৭৫০</div><button class="btn order" data-product="ক্যাজুয়াল শার্ট" data-price="750">WhatsApp-এ অর্ডার</button></div></article>
-<article class="product" data-category="women" data-name="কুর্তি"><div class="photo"><span>👗</span></div><div class="product-body"><h3>কুর্তি</h3><div class="desc">দৈনন্দিন ও বাইরে যাওয়ার জন্য মানানসই।</div><div class="price">৳ ৬৫০</div><button class="btn order" data-product="কুর্তি" data-price="650">WhatsApp-এ অর্ডার</button></div></article>
-<article class="product" data-category="women" data-name="থ্রি-পিস"><div class="photo"><span>🧵</span></div><div class="product-body"><h3>থ্রি-পিস</h3><div class="desc">পছন্দমতো রং ও ডিজাইন জানতে যোগাযোগ করুন।</div><div class="price">৳ ১,২০০</div><button class="btn order" data-product="থ্রি-পিস" data-price="1200">WhatsApp-এ অর্ডার</button></div></article>
-<article class="product" data-category="other" data-name="ব্যাকপ্যাক"><div class="photo"><span>🎒</span></div><div class="product-body"><h3>ব্যাকপ্যাক</h3><div class="desc">কাজ, পড়াশোনা ও ভ্রমণের জন্য উপযোগী।</div><div class="price">৳ ৫৫০</div><button class="btn order" data-product="ব্যাকপ্যাক" data-price="550">WhatsApp-এ অর্ডার</button></div></article>
-<article class="product" data-category="other" data-name="নতুন কালেকশন"><div class="photo"><span>✨</span></div><div class="product-body"><h3>নতুন কালেকশন</h3><div class="desc">নতুন পণ্য ও বর্তমান দাম জানতে মেসেজ দিন।</div><div class="price">দাম জানতে যোগাযোগ</div><button class="btn order" data-product="নতুন কালেকশন" data-price="দাম জানতে হবে">WhatsApp-এ অর্ডার</button></div></article>
-</div><div class="empty" id="empty">কোনো পণ্য পাওয়া যায়নি। অন্য নামে খুঁজে দেখুন।</div>
+<div class="top">ALPHA GROUP • আপনার বিশ্বস্ত অনলাইন শপ</div>
+<header>
+<div class="wrap head">
+<div class="brand">ALPHA GROUP</div>
+<div class="search">
+<input id="search" type="search" placeholder="পণ্যের নাম লিখে খুঁজুন">
+<button id="searchBtn">খুঁজুন</button>
+</div>
+<button id="cartOpen">🛒 কার্ট (<span id="count">০</span>)</button>
+</div>
+</header>
+
+<main class="wrap">
+<section class="hero">
+<h1>আপনার পছন্দের কেনাকাটা</h1>
+<p>পণ্য দেখুন, কার্টে যোগ করুন এবং সহজেই WhatsApp-এ অর্ডার করুন।</p>
+<button onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">এখনই কেনাকাটা করুন</button>
 </section>
-<section class="info" id="delivery">
-<article><div style="font-size:26px">🚚</div><strong>ডেলিভারি</strong><p>ডেলিভারি চার্জ ও সময় অর্ডারের আগে WhatsApp-এ নিশ্চিত করুন।</p></article>
-<article><div style="font-size:26px">💬</div><strong>সহজ অর্ডার</strong><p>পণ্য বেছে অর্ডার বাটনে চাপুন এবং আপনার ঠিকানা পাঠান।</p></article>
-<article><div style="font-size:26px">🔒</div><strong>নিরাপদ যোগাযোগ</strong><p>পেমেন্ট করার আগে দাম, ডেলিভারি ও পেমেন্ট পদ্ধতি নিশ্চিত করুন।</p></article>
+
+<section id="catalog">
+<h2>আমাদের পণ্য</h2>
+<div id="filters" class="filters"></div>
+<p id="productCount" class="small">পণ্য লোড হচ্ছে…</p>
+<div id="products" class="products">
+<div class="empty">পণ্য লোড হচ্ছে…</div>
+</div>
 </section>
-<section id="contact" style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:28px">
-<h2 style="margin-top:0">যোগাযোগ করুন</h2><p>পণ্যের স্টক, সাইজ, রং ও ডেলিভারি সম্পর্কে জানতে WhatsApp-এ মেসেজ দিন।</p>
-<a class="btn" href="https://wa.me/8801903491357?text=আসসালামু%20আলাইকুম%2C%20ALPHA%20GROUP%20অনলাইন%20শপ%20থেকে%20পণ্য%20সম্পর্কে%20জানতে%20চাই।" target="_blank" rel="noopener">WhatsApp-এ মেসেজ দিন</a>
+
+<section id="admin" class="panel hidden">
+<h2>ALPHA GROUP — অ্যাডমিন প্যানেল</h2>
+<div id="adminMsg" class="msg">অ্যাডমিন হিসেবে লগইন করুন।</div>
+
+<div id="adminLogin">
+<label>অ্যাডমিন ইমেইল</label>
+<input id="email" type="email" autocomplete="username">
+<label>পাসওয়ার্ড</label>
+<input id="password" type="password" autocomplete="current-password">
+<button id="loginBtn">লগইন করুন</button>
+</div>
+
+<div id="adminArea" class="hidden">
+<p id="adminWho"></p>
+<button id="logoutBtn" style="background:#333">লগআউট</button>
+<hr>
+<h3>পণ্য যোগ / পরিবর্তন</h3>
+<form id="productForm">
+<input id="pid" type="hidden">
+<label>পণ্যের নাম *</label>
+<input id="pname" required maxlength="150">
+<label>ক্যাটাগরি</label>
+<input id="pcat" placeholder="যেমন: জামা-কাপড়">
+<div class="grid">
+<div><label>দাম (টাকা) *</label><input id="price" type="number" min="0" step="0.01" required></div>
+<div><label>স্টক সংখ্যা</label><input id="stock" type="number" min="0" step="1" value="0" required></div>
+</div>
+<label>মোবাইলের গ্যালারি থেকে ছবি</label>
+<input id="image" type="file" accept="image/*">
+<p class="small">ছবির সর্বোচ্চ আকার ৫ MB। নতুন ছবি না দিলে আগের ছবিই থাকবে।</p>
+<img id="preview" class="hidden" alt="ছবির প্রিভিউ" style="max-width:130px;max-height:130px">
+<label>পণ্যের বিবরণ</label>
+<textarea id="desc" rows="3"></textarea>
+<label><input id="active" type="checkbox" checked style="width:auto"> ওয়েবসাইটে পণ্যটি দেখান</label>
+<button id="saveBtn">পণ্য সংরক্ষণ করুন</button>
+<button type="button" id="cancelBtn" class="chip">এডিট বাতিল</button>
+</form>
+<h3>পণ্যের তালিকা</h3>
+<div id="adminProducts"></div>
+</div>
 </section>
 </main>
-<footer><div class="foot"><div><strong style="font-size:20px">ALPHA GROUP</strong><p>আপনার পছন্দ, আমাদের অঙ্গীকার।</p></div><div><strong>যোগাযোগ</strong><p>WhatsApp: 01903-491357<br>© <span id="year"></span> ALPHA GROUP. সর্বস্বত্ব সংরক্ষিত।</p></div></div></footer>
-<a class="wa-float" href="https://wa.me/8801903491357?text=আসসালামু%20আলাইকুম%2C%20ALPHA%20GROUP%20থেকে%20কেনাকাটা%20করতে%20চাই।" target="_blank" rel="noopener">☏ WhatsApp</a>
+
+<footer>
+<div class="wrap">
+<h3>ALPHA GROUP</h3>
+<p>WhatsApp: 01903491357</p>
+<p class="small" style="color:#ddd">অর্ডারের মূল্য, ডেলিভারি খরচ ও প্রাপ্যতা WhatsApp-এ নিশ্চিত করুন।</p>
+<button id="adminToggle" class="adminlink">অ্যাডমিন লগইন</button>
+</div>
+</footer>
+
+<div id="cartModal" class="modal">
+<div class="drawer">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<h2>আপনার শপিং কার্ট</h2>
+<button id="closeCart" style="background:#333">বন্ধ ✕</button>
+</div>
+<div id="cartLines"></div>
+<h3>মোট: <span id="total">৳০</span></h3>
+<form id="checkout">
+<h3>ডেলিভারির তথ্য</h3>
+<label>আপনার নাম *</label>
+<input id="customer" required maxlength="120" placeholder="পূর্ণ নাম">
+<label>মোবাইল নম্বর *</label>
+<input id="phone" type="tel" required maxlength="30" placeholder="01XXXXXXXXX">
+<label>সম্পূর্ণ ঠিকানা *</label>
+<textarea id="address" required maxlength="600" placeholder="গ্রাম/এলাকা, থানা, জেলা"></textarea>
+<p class="msg">অর্ডার WhatsApp-এ পাঠানো হবে। এই সংস্করণে অনলাইন পেমেন্ট চালু নেই।</p>
+<button style="width:100%">WhatsApp-এ অর্ডার পাঠান</button>
+</form>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const search=document.getElementById('search'),category=document.getElementById('category'),cards=[...document.querySelectorAll('.product')],empty=document.getElementById('empty');
-function filterProducts(){let q=search.value.trim().toLowerCase(),c=category.value,shown=0;cards.forEach(card=>{let ok=card.dataset.name.toLowerCase().includes(q)&&(c==='all'||card.dataset.category===c);card.style.display=ok?'flex':'none';if(ok)shown++});empty.style.display=shown?'none':'block'}
-search.addEventListener('input',filterProducts);category.addEventListener('change',filterProducts);
-document.querySelectorAll('.order').forEach(btn=>btn.addEventListener('click',()=>{let msg=`আসসালামু আলাইকুম, ALPHA GROUP থেকে অর্ডার করতে চাই।%0Aপণ্য: ${btn.dataset.product}%0Aদাম: ${btn.dataset.price==='দাম জানতে হবে'?'দাম জানতে চাই':'৳ '+btn.dataset.price}%0Aনাম:%0Aঠিকানা:%0Aমোবাইল:%0A`;window.open('https://wa.me/8801903491357?text='+encodeURIComponent(decodeURIComponent(msg)),'_blank','noopener')}));
-document.getElementById('year').textContent=new Date().getFullYear();
+(()=>{
+'use strict';
+
+const SUPABASE_URL='https://fjldhxkottfezpkpagcd.supabase.co';
+const SUPABASE_KEY='sb_publishable_VYjqlES3YhTQSIyIEFNJnA_Fr_rS6HO';
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({
+'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+}[c]));
+const money=n=>'৳'+Number(n||0).toLocaleString('bn-BD');
+
+let products=[],cart={},category='সব';
+
+function notice(text){
+$('adminMsg').textContent=text;
+}
+
+async function loadProducts(){
+const {data,error}=await db.from('products')
+.select('id,name,category,price,stock,image_url,description,is_active,created_at')
+.eq('is_active',true).order('created_at',{ascending:false});
+
+if(error){
+$('products').innerHTML='<div class="empty">পণ্য লোড হয়নি। Supabase-এর products টেবিল ও অনুমতি পরীক্ষা করুন।</div>';
+$('productCount').textContent='ডেটাবেস সংযোগে সমস্যা';
+return;
+}
+products=data||[];
+renderFilters();
+renderProducts();
+}
+
+function renderFilters(){
+const cats=['সব',...new Set(products.map(p=>(p.category||'').trim()).filter(Boolean))];
+$('filters').innerHTML=cats.map(c=>
+`<button class="chip ${c===category?'active':''}" data-cat="${esc(c)}">${esc(c==='সব'?'সব পণ্য':c)}</button>`
+).join('');
+$('filters').querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>{
+category=b.dataset.cat;
+renderFilters();
+renderProducts();
+});
+}
+
+function renderProducts(){
+const q=$('search').value.trim().toLowerCase();
+const list=products.filter(p=>
+(category==='সব'||(p.category||'').trim()===category)&&
+(`${p.name} ${p.category||''} ${p.description||''}`).toLowerCase().includes(q)
+);
+$('productCount').textContent=list.length.toLocaleString('bn-BD')+'টি পণ্য';
+
+if(!list.length){
+$('products').innerHTML='<div class="empty">এখনো কোনো পণ্য নেই, অথবা আপনার সার্চের সঙ্গে মেলেনি।</div>';
+return;
+}
+
+$('products').innerHTML=list.map(p=>`
+<article class="product">
+<div class="photo">${p.image_url?
+`<img loading="lazy" src="${esc(p.image_url)}" alt="${esc(p.name)}">`:
+'<b style="font-size:32px;color:#aaa">AG</b>'}</div>
+<div class="pbody">
+<div class="pname">${esc(p.name)}</div>
+<div class="small">${esc(p.description||p.category||'')}</div>
+<div class="price">${money(p.price)}</div>
+<div class="small">${Number(p.stock)>0?'স্টক আছে':'স্টক নিশ্চিত করতে যোগাযোগ করুন'}</div>
+<button class="add" data-add="${p.id}">কার্টে যোগ করুন</button>
+</div>
+</article>`).join('');
+
+$('products').querySelectorAll('[data-add]').forEach(b=>{
+b.onclick=()=>{
+const p=products.find(x=>String(x.id)===b.dataset.add);
+if(!p)return;
+if(Number(p.stock)>0&&Number(cart[p.id]||0)>=Number(p.stock)){
+alert('এই পণ্যের স্টক আর নেই।');
+return;
+}
+cart[p.id]=(cart[p.id]||0)+1;
+updateCart();
+};
+});
+}
+
+function updateCart(){
+const ids=Object.keys(cart).filter(k=>cart[k]>0);
+$('count').textContent=ids.reduce((s,k)=>s+cart[k],0).toLocaleString('bn-BD');
+$('cartLines').innerHTML=ids.length?ids.map(id=>{
+const p=products.find(x=>String(x.id)===id);
+if(!p)return '';
+return `<div class="line">
+<div><b>${esc(p.name)}</b><div class="small">${money(p.price)} × ${cart[id]}</div></div>
+<div class="qty"><button type="button" data-minus="${id}">−</button>${cart[id]}<button type="button" data-plus="${id}">+</button></div>
+</div>`;
+}).join(''):'<div class="empty">আপনার কার্ট খালি।</div>';
+
+const sum=ids.reduce((s,id)=>{
+const p=products.find(x=>String(x.id)===id);
+return s+Number(p?.price||0)*cart[id];
+},0);
+$('total').textContent=money(sum);
+
+$('cartLines').querySelectorAll('[data-minus]').forEach(b=>b.onclick=()=>{
+cart[b.dataset.minus]--;
+if(cart[b.dataset.minus]<=0)delete cart[b.dataset.minus];
+updateCart();
+});
+$('cartLines').querySelectorAll('[data-plus]').forEach(b=>b.onclick=()=>{
+const p=products.find(x=>String(x.id)===b.dataset.plus);
+if(p&&Number(p.stock)>0&&cart[b.dataset.plus]>=Number(p.stock)){
+alert('স্টকের চেয়ে বেশি যোগ করা যাবে না।');return;
+}
+cart[b.dataset.plus]++;
+updateCart();
+});
+}
+
+$('search').oninput=renderProducts;
+$('searchBtn').onclick=renderProducts;
+$('cartOpen').onclick=()=>$('cartModal').classList.add('show');
+$('closeCart').onclick=()=>$('cartModal').classList.remove('show');
+$('cartModal').onclick=e=>{if(e.target===$('cartModal'))$('cartModal').classList.remove('show')};
+
+$('checkout').onsubmit=e=>{
+e.preventDefault();
+const ids=Object.keys(cart).filter(k=>cart[k]>0);
+if(!ids.length){alert('আগে কার্টে পণ্য যোগ করুন।');return;}
+
+const lines=ids.map(id=>{
+const p=products.find(x=>String(x.id)===id);
+return `${p.name} — ${cart[id]} × ${money(p.price)}`;
+}).join('\n');
+const total=ids.reduce((s,id)=>{
+const p=products.find(x=>String(x.id)===id);
+return s+Number(p.price)*cart[id];
+},0);
+
+const message=`ALPHA GROUP অর্ডার
+নাম: ${$('customer').value.trim()}
+ফোন: ${$('phone').value.trim()}
+ঠিকানা: ${$('address').value.trim()}
+
+পণ্যের তালিকা:
+${lines}
+
+মোট পণ্যমূল্য: ${money(total)}
+ডেলিভারি খরচ: নিশ্চিত করতে হবে`;
+
+window.open('https://wa.me/8801903491357?text='+encodeURIComponent(message),'_blank');
+};
+
+/* একই HTML ফাইলে অ্যাডমিন প্যানেল */
+$('adminToggle').onclick=()=>{
+$('admin').classList.toggle('hidden');
+$('admin').scrollIntoView({behavior:'smooth'});
+};
+
+function showAdmin(user){
+$('adminLogin').classList.add('hidden');
+$('adminArea').classList.remove('hidden');
+$('adminWho').textContent='লগইন: '+(user.email||'অ্যাডমিন');
+loadAdminProducts();
+}
+
+async function checkAdmin(){
+const {data:{user}}=await db.auth.getUser();
+if(!user)return;
+const {data,error}=await db.rpc('is_alpha_admin');
+if(error||data!==true){
+await db.auth.signOut();
+notice('এই অ্যাকাউন্টটি অ্যাডমিন হিসেবে অনুমোদিত নয়।');
+return;
+}
+showAdmin(user);
+}
+
+$('loginBtn').onclick=async()=>{
+const email=$('email').value.trim();
+const password=$('password').value;
+if(!email||!password){notice('ইমেইল ও পাসওয়ার্ড দিন।');return;}
+const {data,error}=await db.auth.signInWithPassword({email,password});
+if(error){notice('লগইন হয়নি: '+error.message);return;}
+const {data:ok,error:er}=await db.rpc('is_alpha_admin');
+if(er||ok!==true){
+await db.auth.signOut();
+notice('এই অ্যাকাউন্ট অ্যাডমিন অনুমোদিত নয়।');
+return;
+}
+notice('লগইন সফল হয়েছে।');
+showAdmin(data.user);
+};
+
+$('logoutBtn').onclick=async()=>{
+await db.auth.signOut();
+$('adminArea').classList.add('hidden');
+$('adminLogin').classList.remove('hidden');
+notice('লগআউট হয়েছে।');
+};
+
+$('image').onchange=()=>{
+const f=$('image').files[0];
+if(!f)return;
+if(!f.type.startsWith('image/')||f.size>5*1024*1024){
+alert('ছবি হতে হবে এবং ৫ MB-এর বেশি হওয়া যাবে না।');
+$('image').value='';
+return;
+}
+$('preview').src=URL.createObjectURL(f);
+$('preview').classList.remove('hidden');
+};
+
+async function uploadImage(){
+const file=$('image').files[0];
+if(!file)return null;
+const {data:{user}}=await db.auth.getUser();
+if(!user)throw Error('আবার অ্যাডমিন হিসেবে লগইন করুন।');
+
+const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+const path=user.id+'/'+Date.now()+'-'+safeName;
+const {error}=await db.storage.from('products').upload(path,file);
+if(error)throw error;
+return db.storage.from('products').getPublicUrl(path).data.publicUrl;
+}
+
+function resetForm(){
+$('productForm').reset();
+$('pid').value='';
+$('stock').value='0';
+$('active').checked=true;
+$('preview').classList.add('hidden');
+$('saveBtn').textContent='পণ্য সংরক্ষণ করুন';
+}
+
+$('cancelBtn').onclick=resetForm;
+
+$('productForm').onsubmit=async e=>{
+e.preventDefault();
+const id=$('pid').value;
+const p={
+name:$('pname').value.trim(),
+category:$('pcat').value.trim(),
+price:Number($('price').value),
+stock:Number($('stock').value),
+description:$('desc').value.trim(),
+is_active:$('active').checked
+};
+
+if(!p.name||!Number.isFinite(p.price)||p.price<0||
+!Number.isInteger(p.stock)||p.stock<0){
+notice('পণ্যের নাম, দাম ও স্টক সঠিকভাবে দিন।');return;
+}
+
+$('saveBtn').disabled=true;
+try{
+const imageUrl=await uploadImage();
+if(imageUrl)p.image_url=imageUrl;
+else if(!id)p.image_url=null;
+
+const result=id
+?await db.from('products').update(p).eq('id',Number(id))
+:await db.from('products').insert(p);
+
+if(result.error)throw result.error;
+notice(id?'পণ্য আপডেট হয়েছে।':'নতুন পণ্য যোগ হয়েছে।');
+resetForm();
+await loadProducts();
+await loadAdminProducts();
+}catch(err){
+notice('সমস্যা: '+err.message);
+}finally{
+$('saveBtn').disabled=false;
+}
+};
+
+async function loadAdminProducts(){
+const {data,error}=await db.from('products').select('*').order('created_at',{ascending:false});
+if(error){$('adminProducts').textContent=error.message;return;}
+const list=data||[];
+$('adminProducts').innerHTML=list.length?list.map(p=>`
+<div class="item">
+<b>${esc(p.name)} ${p.is_active?'':'(লুকানো)'}</b>
+<p>দাম: ${money(p.price)} • স্টক: ${p.stock} • ${esc(p.category||'')}</p>
+${p.image_url?`<img src="${esc(p.image_url)}" alt="">`:''}
+<p>${esc(p.description||'')}</p>
+<button data-edit="${p.id}">এডিট</button>
+<button data-active="${p.id}" style="background:#333">${p.is_active?'লুকান':'দেখান'}</button>
+</div>`).join(''):'এখনও পণ্য যোগ করা হয়নি।';
+
+$('adminProducts').querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>{
+const p=list.find(x=>x.id===Number(b.dataset.edit));
+$('pid').value=p.id;
+$('pname').value=p.name||'';
+$('pcat').value=p.category||'';
+$('price').value=p.price;
+$('stock').value=p.stock;
+$('desc').value=p.description||'';
+$('active').checked=!!p.is_active;
+$('image').value='';
+if(p.image_url){$('preview').src=p.image_url;$('preview').classList.remove('hidden');}
+else $('preview').classList.add('hidden');
+$('saveBtn').textContent='পরিবর্তন সংরক্ষণ করুন';
+$('productForm').scrollIntoView({behavior:'smooth'});
+});
+
+$('adminProducts').querySelectorAll('[data-active]').forEach(b=>b.onclick=async()=>{
+const p=list.find(x=>x.id===Number(b.dataset.active));
+const {error}=await db.from('products').update({is_active:!p.is_active}).eq('id',p.id);
+if(error){notice('পরিবর্তন হয়নি: '+error.message);return;}
+await loadProducts();
+await loadAdminProducts();
+notice('পণ্যের অবস্থা পরিবর্তন হয়েছে।');
+});
+}
+
+db.auth.onAuthStateChange((event,session)=>{
+if(event==='SIGNED_OUT'){
+$('adminArea').classList.add('hidden');
+$('adminLogin').classList.remove('hidden');
+}
+});
+
+loadProducts();
+checkAdmin();
+})();
 </script>
-</body></html>
+</body>
+</html>
