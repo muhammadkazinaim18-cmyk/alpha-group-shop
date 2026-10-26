@@ -1,0 +1,33 @@
+
+-- ALPHA GROUP: allow admins to upload product images
+
+create policy "Alpha admins upload product images"
+on storage.objects
+for insert
+to authenticated
+with check (
+  bucket_id = 'products'
+  and (select public.is_alpha_admin())
+);
+
+create policy "Alpha admins update product images"
+on storage.objects
+for update
+to authenticated
+using (
+  bucket_id = 'products'
+  and (select public.is_alpha_admin())
+)
+with check (
+  bucket_id = 'products'
+  and (select public.is_alpha_admin())
+);
+
+create policy "Alpha admins delete product images"
+on storage.objects
+for delete
+to authenticated
+using (
+  bucket_id = 'products'
+  and (select public.is_alpha_admin())
+);
